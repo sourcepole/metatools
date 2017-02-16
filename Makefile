@@ -10,7 +10,7 @@ LANG_FILES=$(patsubst $(LANG_PATH)/%.ts, $(LANG_PATH)/%.qm, $(LANG_SOURCES))
 
 RES_PATH=.
 RES_SOURCES=$(wildcard $(RES_PATH)/*.qrc)
-RES_FILES=$(patsubst $(RES_PATH)/%.qrc, $(RES_PATH)/%_rc.py, $(RES_SOURCES))
+RES_FILES=$(patsubst $(RES_PATH)/%.qrc, $(RES_PATH)/%.py, $(RES_SOURCES))
 
 PRO_PATH=.
 PRO_FILES=$(wildcard $(PRO_PATH)/*.pro)
@@ -32,9 +32,9 @@ $(UI_FILES): $(UI_PATH)/%.py: $(UI_PATH)/%.ui
 	pyuic4 -o $@ $<
 
 $(LANG_FILES): $(LANG_PATH)/%.qm: $(LANG_PATH)/%.ts
-	lrelease $<
+	lrelease-qt4 $<
 
-$(RES_FILES): $(RES_PATH)/%_rc.py: $(RES_PATH)/%.qrc
+$(RES_FILES): $(RES_PATH)/%.py: $(RES_PATH)/%.qrc
 	pyrcc4 -o $@ $<
 
 clean:
