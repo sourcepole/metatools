@@ -1,6 +1,8 @@
 UI_PATH=ui
 UI_SOURCES=$(wildcard $(UI_PATH)/*.ui)
-UI_FILES=$(patsubst $(UI_PATH)/%.ui, $(UI_PATH)/%.py, $(UI_SOURCES))
+#UI_FILES=$(patsubst $(UI_PATH)/%.ui, $(UI_PATH)/%.py, $(UI_SOURCES))
+#pyuic4 generated files are not needed
+UI_FILES=
 
 LANG_PATH=i18n
 LANG_SOURCES=$(wildcard $(LANG_PATH)/*.ts)
